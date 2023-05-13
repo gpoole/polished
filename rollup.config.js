@@ -31,8 +31,7 @@ const getBabelOptions = ({ useESModules }, targets) => ({
         targets,
         bugfixes: true,
       },
-    ],
-    "@babel/flow",
+    ]
   ],
   plugins: [
     "add-module-exports",

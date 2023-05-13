@@ -6,11 +6,6 @@
         "dependsOn": []
       }
     },
-    "flow": {
-      "//#flow": {
-        "dependsOn": []
-      }
-    },
     "lint": {
       "//#lint": {
         "dependsOn": []

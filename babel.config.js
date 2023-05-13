@@ -10,8 +10,7 @@ module.exports = {
         exclude: [/transform-typeof-symbol/],
         bugfixes: true,
       },
-    ],
-    "@babel/flow",
+    ]
   ],
   plugins: [
     cjs && "add-module-exports",

@@ -5,7 +5,6 @@
 .editorconfig
 .eslintignore
 .eslintrc
-.flowconfig
 .github
 .gitignore
 .npmignore
@@ -22,7 +21,6 @@ coverage
 docs-theme
 src
 test
-flow-typed
 
 # markdown files
 CONTRIBUTING.md
