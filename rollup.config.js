@@ -75,7 +75,7 @@ export default [
       sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: true })),
-      replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
+      replace({ "process.env.NODE_ENV": JSON.stringify("development"), preventAssignment: true }),
     ],
   },
   {
@@ -86,7 +86,7 @@ export default [
       sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: true })),
-      replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
+      replace({ "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true }),
       terser(),
     ],
   },
