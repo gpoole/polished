@@ -1,12 +1,11 @@
-// @flow
 import pixelsto from '../internalHelpers/_pxto'
 
 /**
  * Convert pixel value to ems. The default base value is 16px, but can be changed by passing a
  * second argument to the function.
- * @function
- * @param {string|number} pxval
- * @param {string|number} [base='16px']
+ * @param pxval - Pixel value to convert to ems.
+ * @param [base='16px'] - Base pixel value for the conversion, defaults to 16px.
+ * @returns The pixel value converted to ems.
  * @example
  * // Styles as object usage
  * const styles = {
@@ -24,5 +23,7 @@ import pixelsto from '../internalHelpers/_pxto'
  *   'height': '1em'
  * }
  */
-const em: (value: string | number, base?: string | number) => string = pixelsto('em')
+const em = (value: string | number, base: string | number = '16px'): string =>
+  pixelsto('em')(value, base)
+
 export default em

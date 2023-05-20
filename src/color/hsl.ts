@@ -1,4 +1,3 @@
-// @flow
 import hslToHex from '../internalHelpers/_hslToHex'
 import PolishedError from '../internalHelpers/_errors'
 
@@ -33,9 +32,9 @@ export default function hsl(
   lightness?: number,
 ): string {
   if (
-    typeof value === 'number'
-    && typeof saturation === 'number'
-    && typeof lightness === 'number'
+    typeof value === 'number' &&
+    typeof saturation === 'number' &&
+    typeof lightness === 'number'
   ) {
     return hslToHex(value, saturation, lightness)
   } else if (typeof value === 'object' && saturation === undefined && lightness === undefined) {

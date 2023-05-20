@@ -1,28 +1,32 @@
-// @flow
 import capitalizeString from '../internalHelpers/_capitalizeString'
-
-import type { Styles } from '../types/style'
+import { Styles } from '../types/style'
 
 const positionMap = ['Top', 'Right', 'Bottom', 'Left']
 
-function generateProperty(property: string, position: string) {
+function generateProperty(property: string, position: string): string {
   if (!property) return position.toLowerCase()
+
   const splitProperty = property.split('-')
   if (splitProperty.length > 1) {
     splitProperty.splice(1, 0, position)
-    return splitProperty.reduce((acc, val) => `${acc}${capitalizeString(val)}`)
+    return splitProperty.map(capitalizeString).join('')
   }
+
   const joinedProperty = property.replace(/([a-z])([A-Z])/g, `$1${position}$2`)
   return property === joinedProperty ? `${property}${position}` : joinedProperty
 }
 
-function generateStyles(property: string, valuesWithDefaults: Array<?string | ?number>) {
-  const styles = {}
-  for (let i = 0; i < valuesWithDefaults.length; i += 1) {
-    if (valuesWithDefaults[i] || valuesWithDefaults[i] === 0) {
-      styles[generateProperty(property, positionMap[i])] = valuesWithDefaults[i]
+function generateStyles(
+  property: string,
+  valuesWithDefaults: Array<string | number | null>,
+): Styles {
+  const styles: Styles = {}
+  valuesWithDefaults.forEach((value, i) => {
+    if (value !== null) {
+      styles[generateProperty(property, positionMap[i])] = value
     }
-  }
+  })
+
   return styles
 }
 
@@ -50,10 +54,10 @@ function generateStyles(property: string, valuesWithDefaults: Array<?string | ?n
  */
 export default function directionalProperty(
   property: string,
-  ...values: Array<?string | ?number>
+  ...values: Array<string | number | null>
 ): Styles {
-  //  prettier-ignore
-  const [firstValue, secondValue = firstValue, thirdValue = firstValue, fourthValue = secondValue] = values
+  const [firstValue, secondValue = firstValue, thirdValue = firstValue, fourthValue = secondValue] =
+    values
   const valuesWithDefaults = [firstValue, secondValue, thirdValue, fourthValue]
   return generateStyles(property, valuesWithDefaults)
 }

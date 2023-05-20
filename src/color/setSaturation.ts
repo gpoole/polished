@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
@@ -28,12 +27,12 @@ import toColorString from './toColorString'
  */
 function setSaturation(saturation: number | string, color: string): string {
   if (color === 'transparent') return color
+  const hslColor = parseToHsl(color)
   return toColorString({
-    ...parseToHsl(color),
-    saturation: parseFloat(saturation),
+    ...hslColor,
+    saturation: parseFloat(saturation.toString()),
   })
 }
 
-// prettier-ignore
-const curriedSetSaturation = curry/* ::<number | string, string, string> */(setSaturation)
+const curriedSetSaturation = curry(setSaturation)
 export default curriedSetSaturation

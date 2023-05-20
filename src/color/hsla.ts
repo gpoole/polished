@@ -1,4 +1,3 @@
-// @flow
 import hslToHex from '../internalHelpers/_hslToHex'
 import hslToRgb from '../internalHelpers/_hslToRgb'
 import PolishedError from '../internalHelpers/_errors'
@@ -12,14 +11,14 @@ import type { HslaColor } from '../types/color'
  * // Styles as object usage
  * const styles = {
  *   background: hsla(359, 0.75, 0.4, 0.7),
- *   background: hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0,7 }),
+ *   background: hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.7 }),
  *   background: hsla(359, 0.75, 0.4, 1),
  * }
  *
  * // styled-components usage
  * const div = styled.div`
  *   background: ${hsla(359, 0.75, 0.4, 0.7)};
- *   background: ${hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0,7 })};
+ *   background: ${hsla({ hue: 360, saturation: 0.75, lightness: 0.4, alpha: 0.7 })};
  *   background: ${hsla(359, 0.75, 0.4, 1)};
  * `
  *
@@ -38,19 +37,19 @@ export default function hsla(
   alpha?: number,
 ): string {
   if (
-    typeof value === 'number'
-    && typeof saturation === 'number'
-    && typeof lightness === 'number'
-    && typeof alpha === 'number'
+    typeof value === 'number' &&
+    typeof saturation === 'number' &&
+    typeof lightness === 'number' &&
+    typeof alpha === 'number'
   ) {
     return alpha >= 1
       ? hslToHex(value, saturation, lightness)
       : `rgba(${hslToRgb(value, saturation, lightness)},${alpha})`
   } else if (
-    typeof value === 'object'
-    && saturation === undefined
-    && lightness === undefined
-    && alpha === undefined
+    typeof value === 'object' &&
+    saturation === undefined &&
+    lightness === undefined &&
+    alpha === undefined
   ) {
     return value.alpha >= 1
       ? hslToHex(value.hue, value.saturation, value.lightness)

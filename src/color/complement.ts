@@ -1,4 +1,3 @@
-// @flow
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
 

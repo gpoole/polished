@@ -1,4 +1,3 @@
-// @flow
 import hsl from './hsl'
 import hsla from './hsla'
 import PolishedError from '../internalHelpers/_errors'
@@ -31,10 +30,10 @@ import type { HslColor, HslaColor } from '../types/color'
  */
 export default function hslToColorString(color: HslColor | HslaColor | number): string {
   if (
-    typeof color === 'object'
-    && typeof color.hue === 'number'
-    && typeof color.saturation === 'number'
-    && typeof color.lightness === 'number'
+    typeof color === 'object' &&
+    typeof color.hue === 'number' &&
+    typeof color.saturation === 'number' &&
+    typeof color.lightness === 'number'
   ) {
     if (color.alpha && typeof color.alpha === 'number') {
       return hsla({

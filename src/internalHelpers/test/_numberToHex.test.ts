@@ -16,4 +16,20 @@ describe('numberToHex', () => {
   it('should convert 17 to "11"', () => {
     expect(numberToHex(17)).toEqual('11')
   })
+
+  it('should convert 255 to "ff"', () => {
+    expect(numberToHex(255)).toEqual('ff')
+  })
+
+  it('should convert 256 to "100"', () => {
+    expect(numberToHex(256)).toEqual('100')
+  })
+
+  it('should convert 4095 to "fff"', () => {
+    expect(numberToHex(4095)).toEqual('fff')
+  })
+
+  it('should convert 4096 to "1000"', () => {
+    expect(numberToHex(4096)).toEqual('1000')
+  })
 })

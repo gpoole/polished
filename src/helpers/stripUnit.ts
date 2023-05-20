@@ -1,6 +1,4 @@
-// @flow
-const cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/
-
+const cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*)$/
 /**
  * Returns a given CSS value minus its unit of measure.
  *

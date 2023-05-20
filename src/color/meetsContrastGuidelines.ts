@@ -1,4 +1,3 @@
-// @flow
 import getContrast from './getContrast'
 
 import type { ContrastScores } from '../types/color'

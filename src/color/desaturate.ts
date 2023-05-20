@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import guard from '../internalHelpers/_guard'
 import parseToHsl from './parseToHsl'
@@ -33,10 +32,9 @@ function desaturate(amount: number | string, color: string): string {
   const hslColor = parseToHsl(color)
   return toColorString({
     ...hslColor,
-    saturation: guard(0, 1, hslColor.saturation - parseFloat(amount)),
+    saturation: guard(0, 1, hslColor.saturation - parseFloat(amount.toString())),
   })
 }
 
-// prettier-ignore
-const curriedDesaturate = curry/* ::<number | string, string, string> */(desaturate)
+const curriedDesaturate = curry(desaturate)
 export default curriedDesaturate

@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import rgba from './rgba'
 import parseToRgb from './parseToRgb'
@@ -45,8 +44,6 @@ function mix(weight: number | string, color: string, otherColor: string): string
     alpha: typeof parsedColor2.alpha === 'number' ? parsedColor2.alpha : 1,
   }
 
-  // The formula is copied from the original Sass implementation:
-  // http://sass-lang.com/documentation/Sass/Script/Functions.html#mix-instance_method
   const alphaDelta = color1.alpha - color2.alpha
   const x = parseFloat(weight) * 2 - 1
   const y = x * alphaDelta === -1 ? x : x + alphaDelta
@@ -58,13 +55,11 @@ function mix(weight: number | string, color: string, otherColor: string): string
     red: Math.floor(color1.red * weight1 + color2.red * weight2),
     green: Math.floor(color1.green * weight1 + color2.green * weight2),
     blue: Math.floor(color1.blue * weight1 + color2.blue * weight2),
-    alpha:
-      color1.alpha * parseFloat(weight) + color2.alpha * (1 - parseFloat(weight)),
+    alpha: color1.alpha * parseFloat(weight) + color2.alpha * (1 - parseFloat(weight)),
   }
 
   return rgba(mixedColor)
 }
 
-// prettier-ignore
-const curriedMix = curry/* ::<number | string, string, string, string> */(mix)
+const curriedMix = curry(mix) as typeof mix
 export default curriedMix

@@ -1,4 +1,3 @@
-// @flow
 import PolishedError from '../internalHelpers/_errors'
 
 const cssVariableRegex = /--[\S]*/g
@@ -31,18 +30,16 @@ export default function cssVar(
     throw new PolishedError(73)
   }
 
-  let variableValue
+  let variableValue: string | null = null
 
-  /* eslint-disable */
-  /* istanbul ignore next */
-  if (typeof document !== 'undefined' && document.documentElement !== null) {
-    variableValue = getComputedStyle(document.documentElement).getPropertyValue(cssVariable)
+  if (typeof document !== 'undefined' && document.documentElement) {
+    variableValue =
+      getComputedStyle(document.documentElement).getPropertyValue(cssVariable)?.trim() || null
   }
-  /* eslint-enable */
 
   if (variableValue) {
-    return variableValue.trim()
-  } else if (defaultValue) {
+    return variableValue
+  } else if (defaultValue !== undefined) {
     return defaultValue
   }
 

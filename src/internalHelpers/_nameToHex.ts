@@ -1,5 +1,4 @@
-// @flow
-const namedColorMap = {
+const namedColorMap: { [key: string]: string } = {
   aliceblue: 'f0f8ff',
   antiquewhite: 'faebd7',
   aqua: '00ffff',
@@ -155,9 +154,8 @@ const namedColorMap = {
  * @private
  */
 function nameToHex(color: string): string {
-  if (typeof color !== 'string') return color
   const normalizedColorName = color.toLowerCase()
-  return namedColorMap[normalizedColorName] ? `#${namedColorMap[normalizedColorName]}` : color
+  return `#${namedColorMap[normalizedColorName]?.toLowerCase() ?? normalizedColorName}`
 }
 
 export default nameToHex

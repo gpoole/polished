@@ -1,8 +1,6 @@
-// @flow
 import parseToRgb from './parseToRgb'
 import rgbToHsl from '../internalHelpers/_rgbToHsl'
-
-import type { HslColor, HslaColor } from '../types/color'
+import { HslColor, HslaColor } from '../types/color'
 
 /**
  * Returns an HslColor or HslaColor object. This utility function is only useful

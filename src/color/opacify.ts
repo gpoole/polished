@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import guard from '../internalHelpers/_guard'
 import rgba from './rgba'
@@ -37,11 +36,10 @@ function opacify(amount: number | string, color: string): string {
   const alpha: number = typeof parsedColor.alpha === 'number' ? parsedColor.alpha : 1
   const colorWithAlpha = {
     ...parsedColor,
-    alpha: guard(0, 1, (alpha * 100 + parseFloat(amount) * 100) / 100),
+    alpha: guard(0, 1, (alpha * 100 + parseFloat(amount.toString()) * 100) / 100),
   }
   return rgba(colorWithAlpha)
 }
 
-// prettier-ignore
-const curriedOpacify = curry/* ::<number | string, string, string> */(opacify)
+const curriedOpacify = curry(opacify)
 export default curriedOpacify

@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import mix from './mix'
 
@@ -27,9 +26,8 @@ import mix from './mix'
 
 function tint(percentage: number | string, color: string): string {
   if (color === 'transparent') return color
-  return mix(parseFloat(percentage), 'rgb(255, 255, 255)', color)
+  return mix(parseFloat(percentage.toString()), 'rgb(255, 255, 255)', color)
 }
 
-// prettier-ignore
-const curriedTint = curry/* ::<number | string, string, string> */(tint)
+const curriedTint = curry(tint)
 export default curriedTint

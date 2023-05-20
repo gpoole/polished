@@ -1,7 +1,5 @@
-// @flow
-
 function guard(lowerBoundary: number, upperBoundary: number, value: number): number {
-  return Math.max(lowerBoundary, Math.min(upperBoundary, value))
+  return value < lowerBoundary ? lowerBoundary : value > upperBoundary ? upperBoundary : value
 }
 
 export default guard

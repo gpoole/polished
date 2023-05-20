@@ -1,4 +1,3 @@
-// @flow
 import getValueAndUnit from '../getValueAndUnit'
 
 describe('getValueAndUnit', () => {
@@ -6,7 +5,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1px')).toEqual([1, 'px'])
   })
 
-  it('should get value and px from values', () => {
+  it('should get value and px from decimal values', () => {
     expect(getValueAndUnit('1.5px')).toEqual([1.5, 'px'])
   })
 
@@ -14,7 +13,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1pt')).toEqual([1, 'pt'])
   })
 
-  it('should get value and pt from values', () => {
+  it('should get value and pt from decimal values', () => {
     expect(getValueAndUnit('1.5pt')).toEqual([1.5, 'pt'])
   })
 
@@ -22,7 +21,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1pc')).toEqual([1, 'pc'])
   })
 
-  it('should get value and pc from values', () => {
+  it('should get value and pc from decimal values', () => {
     expect(getValueAndUnit('1.5pc')).toEqual([1.5, 'pc'])
   })
 
@@ -30,7 +29,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1mm')).toEqual([1, 'mm'])
   })
 
-  it('should get value and mm from values', () => {
+  it('should get value and mm from decimal values', () => {
     expect(getValueAndUnit('1.5mm')).toEqual([1.5, 'mm'])
   })
 
@@ -38,7 +37,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1q')).toEqual([1, 'q'])
   })
 
-  it('should get value and q from values', () => {
+  it('should get value and q from decimal values', () => {
     expect(getValueAndUnit('1.5q')).toEqual([1.5, 'q'])
   })
 
@@ -46,7 +45,7 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1cm')).toEqual([1, 'cm'])
   })
 
-  it('should get value and cm from values', () => {
+  it('should get value and cm from decimal values', () => {
     expect(getValueAndUnit('1.5cm')).toEqual([1.5, 'cm'])
   })
 
@@ -54,11 +53,11 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('1in')).toEqual([1, 'in'])
   })
 
-  it('should get value and in from values', () => {
+  it('should get value and in from decimal values', () => {
     expect(getValueAndUnit('1.5in')).toEqual([1.5, 'in'])
   })
 
-  it('should get value and em from whole value', () => {
+  it('should get value and em from whole values', () => {
     expect(getValueAndUnit('1em')).toEqual([1, 'em'])
   })
 
@@ -130,11 +129,15 @@ describe('getValueAndUnit', () => {
     expect(getValueAndUnit('33.3%')).toEqual([33.3, '%'])
   })
 
-  it('should return value and no unit when passed a number string', () => {
+  it('should return value and no unit when passed a number', () => {
+    expect(getValueAndUnit(33)).toEqual([33, ''])
+  })
+
+  it('should return value and no unit when passed a number string without unit', () => {
     expect(getValueAndUnit('33')).toEqual([33, ''])
   })
 
-  it('should return value and no unit when passed a number string', () => {
+  it('should return original value and undefined when passed a string not matching the pattern', () => {
     expect(getValueAndUnit('33px33')).toEqual(['33px33', undefined])
   })
 })

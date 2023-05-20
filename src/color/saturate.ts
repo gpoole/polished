@@ -1,4 +1,4 @@
-// @flow
+import { HslColor, HslaColor } from '../types/color'
 import curry from '../internalHelpers/_curry'
 import guard from '../internalHelpers/_guard'
 import parseToHsl from './parseToHsl'
@@ -32,12 +32,16 @@ import toColorString from './toColorString'
 function saturate(amount: number | string, color: string): string {
   if (color === 'transparent') return color
   const hslColor = parseToHsl(color)
+  const saturationAmount = typeof amount === 'number' ? amount : parseFloat(amount)
+  if (isNaN(saturationAmount)) {
+    throw new Error(`Invalid amount value: ${amount}`)
+  }
   return toColorString({
     ...hslColor,
-    saturation: guard(0, 1, hslColor.saturation + parseFloat(amount)),
+    saturation: guard(0, 1, hslColor.saturation + saturationAmount),
   })
 }
 
 // prettier-ignore
-const curriedSaturate = curry/* ::<number | string, string, string> */(saturate)
+const curriedSaturate = curry(saturate);
 export default curriedSaturate

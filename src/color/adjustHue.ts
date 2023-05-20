@@ -1,10 +1,9 @@
-// @flow
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
 import curry from '../internalHelpers/_curry'
 
 /**
- * Changes the hue of the color. Hue is a number between 0 to 360. The first
+ * Changes the hue of a color. Hue is a number between 0 and 360. The first
  * argument for adjustHue is the amount of degrees the color is rotated around
  * the color wheel, always producing a positive hue value.
  *
@@ -12,7 +11,7 @@ import curry from '../internalHelpers/_curry'
  * // Styles as object usage
  * const styles = {
  *   background: adjustHue(180, '#448'),
- *   background: adjustHue('180', 'rgba(101,100,205,0.7)'),
+ *   background: adjustHue(180, 'rgba(101,100,205,0.7)'),
  * }
  *
  * // styled-components usage
@@ -32,10 +31,9 @@ function adjustHue(degree: number | string, color: string): string {
   const hslColor = parseToHsl(color)
   return toColorString({
     ...hslColor,
-    hue: hslColor.hue + parseFloat(degree),
+    hue: hslColor.hue + parseFloat(degree.toString()),
   })
 }
 
-// prettier-ignore
-const curriedAdjustHue = curry/* ::<number | string, string, string> */(adjustHue)
+const curriedAdjustHue = curry(adjustHue)
 export default curriedAdjustHue

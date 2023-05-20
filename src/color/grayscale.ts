@@ -1,9 +1,8 @@
-// @flow
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
 
 /**
- * Converts the color to a grayscale, by reducing its saturation to 0.
+ * Converts the color to grayscale by reducing its saturation to 0.
  *
  * @example
  * // Styles as object usage
@@ -26,8 +25,7 @@ import toColorString from './toColorString'
  */
 export default function grayscale(color: string): string {
   if (color === 'transparent') return color
-  return toColorString({
-    ...parseToHsl(color),
-    saturation: 0,
-  })
+  const hslColor = parseToHsl(color)
+  hslColor.saturation = 0
+  return toColorString(hslColor)
 }

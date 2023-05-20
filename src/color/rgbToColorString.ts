@@ -1,9 +1,7 @@
-// @flow
+import { RgbColor, RgbaColor } from '../types/color'
 import rgb from './rgb'
 import rgba from './rgba'
 import PolishedError from '../internalHelpers/_errors'
-
-import type { RgbColor, RgbaColor } from '../types/color'
 
 /**
  * Converts a RgbColor or RgbaColor object to a color string.
@@ -31,10 +29,10 @@ import type { RgbColor, RgbaColor } from '../types/color'
  */
 export default function rgbToColorString(color: RgbColor | RgbaColor): string {
   if (
-    typeof color === 'object'
-    && typeof color.red === 'number'
-    && typeof color.green === 'number'
-    && typeof color.blue === 'number'
+    typeof color === 'object' &&
+    typeof color.red === 'number' &&
+    typeof color.green === 'number' &&
+    typeof color.blue === 'number'
   ) {
     if (typeof color.alpha === 'number') {
       return rgba({

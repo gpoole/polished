@@ -30,7 +30,8 @@
   "types": "lib/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "yarn build:lib && yarn build:dist",
+    "oldbuild": "yarn build:lib && yarn build:dist",
+    "build": "esbuild src/index.ts --bundle --format=esm --outfile=dist/polished.esm.js --minify --sourcemap --target=es2015",
     "prebuild:lib": "shx rm -rf lib/*",
     "build:lib": "cross-env BABEL_ENV=cjs babel --out-dir lib src --ignore test.js",
     "prebuild:umd": "shx rm -rf dist/*",
@@ -41,7 +42,8 @@
     "typescript": "tsc ./typescript-test.ts --noEmit --target es6 --module es2015 --moduleResolution node --allowJs",
     "lint": "eslint src",
     "prepare": "yarn build && yarn typescript && husky install",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "preinstall": "npx only-allow pnpm"
   },
   "lint-staged": {
     "src/**/*.js": [
@@ -53,25 +55,31 @@
     "build:lib": "src/**/*.js"
   },
   "dependencies": {
-    "@babel/runtime": "^7.21.5"
+    "@babel/runtime": "^7.21.5",
+    "@types/preval.macro": "^3.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.5",
     "@babel/core": "^7.21.8",
     "@babel/eslint-parser": "^7.21.8",
-    "@babel/plugin-transform-runtime": "^7.21.4",
-    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.21.5",
+    "@babel/preset-typescript": "^7.21.5",
+    "@babel/runtime-corejs3": "^7.21.5",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-replace": "^5.0.2",
-    "babel-eslint": "^10.1.0",
+    "@rollup/plugin-terser": "^0.4.1",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^20.1.4",
     "babel-jest": "^29.5.0",
     "babel-plugin-add-module-exports": "^1.0.2",
     "babel-plugin-annotate-pure-calls": "^0.4.0",
+    "babel-plugin-macros": "^3.1.0",
     "babel-plugin-preval": "5.1.0",
+    "core-js": "3",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.1.0",
+    "esbuild": "^0.17.19",
     "eslint": "^8.40.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
@@ -81,28 +89,19 @@
     "lint-staged": "^13.2.2",
     "npm-watch": "^0.11.0",
     "prettier": "^2.8.8",
+    "preval.macro": "^5.0.0",
     "ramda": "^0.29.0",
     "rollup": "^3.21.7",
-    "rollup-plugin-sourcemaps": "^0.6.3",
-    "rollup-plugin-terser": "^7.0.2",
     "semantic-release": "^21.0.2",
     "shx": "^0.3.4",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
     "turbo": "^1.9.4",
-    "typescript": "5.0.4",
-    "validate-commit-msg": "^2.14.0"
+    "typescript": "5.0.4"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "jest": {
-    "coverageDirectory": "./coverage/",
-    "collectCoverage": true,
-    "verbose": true,
-    "testEnvironment": "jsdom",
-    "testEnvironmentOptions": {
-      "testURL": "http://localhost/"
     }
   },
   "collective": {

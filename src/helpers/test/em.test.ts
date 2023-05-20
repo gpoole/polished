@@ -1,4 +1,3 @@
-// @flow
 import em from '../em'
 
 describe('em', () => {

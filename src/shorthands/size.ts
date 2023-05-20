@@ -1,5 +1,4 @@
-// @flow
-import type { Styles } from '../types/style'
+import { Styles } from '../types/style'
 
 /**
  * Shorthand to set the height and width properties in a single statement.
@@ -21,7 +20,7 @@ import type { Styles } from '../types/style'
  *   'width': '250px',
  * }
  */
-export default function size(height: string | number, width?: string | number = height): Styles {
+export default function size(height: string | number, width: string | number = height): Styles {
   return {
     height,
     width,

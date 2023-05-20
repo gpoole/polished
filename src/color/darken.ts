@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import guard from '../internalHelpers/_guard'
 import parseToHsl from './parseToHsl'
@@ -32,10 +31,9 @@ function darken(amount: number | string, color: string): string {
   const hslColor = parseToHsl(color)
   return toColorString({
     ...hslColor,
-    lightness: guard(0, 1, hslColor.lightness - parseFloat(amount)),
+    lightness: guard(0, 1, hslColor.lightness - parseFloat(amount.toString())),
   })
 }
 
-// prettier-ignore
-const curriedDarken = curry/* ::<number | string, string, string> */(darken)
+const curriedDarken = curry(darken)
 export default curriedDarken

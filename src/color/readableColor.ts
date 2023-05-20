@@ -1,4 +1,3 @@
-// @flow
 import getContrast from './getContrast'
 import getLuminance from './getLuminance'
 
@@ -42,9 +41,9 @@ const defaultReturnIfDarkColor = '#fff'
  */
 export default function readableColor(
   color: string,
-  returnIfLightColor?: string = defaultReturnIfLightColor,
-  returnIfDarkColor?: string = defaultReturnIfDarkColor,
-  strict?: boolean = true,
+  returnIfLightColor: string = defaultReturnIfLightColor,
+  returnIfDarkColor: string = defaultReturnIfDarkColor,
+  strict: boolean = true,
 ): string {
   const isColorLight = getLuminance(color) > 0.179
   const preferredReturnColor = isColorLight ? returnIfLightColor : returnIfDarkColor

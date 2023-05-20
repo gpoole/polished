@@ -1,17 +1,11 @@
-// @flow
 import cssVar from '../cssVar'
 
 beforeAll(() => {
-  // $FlowFixMe
-  document.documentElement.style.setProperty('--background', '#FFF') // eslint-disable-line no-undef
-  // $FlowFixMe
-  document.documentElement.style.setProperty('--foreground-color', '#000') // eslint-disable-line no-undef
-  // $FlowFixMe
-  document.documentElement.style.setProperty('--our-background-color', 'red') // eslint-disable-line no-undef
-  // $FlowFixMe
-  document.documentElement.style.setProperty('--our-Background-Color', 'orange') // eslint-disable-line no-undef
-  // $FlowFixMe
-  document.documentElement.style.setProperty('--our-complex-value', '12px 12px') // eslint-disable-line no-undef
+  document.documentElement.style.setProperty('--background', '#FFF')
+  document.documentElement.style.setProperty('--foreground-color', '#000')
+  document.documentElement.style.setProperty('--our-background-color', 'red')
+  document.documentElement.style.setProperty('--our-Background-Color', 'orange')
+  document.documentElement.style.setProperty('--our-complex-value', '12px 12px')
 })
 
 describe('cssVar', () => {
@@ -35,7 +29,7 @@ describe('cssVar', () => {
     expect(cssVar('--our-complex-value')).toEqual('12px 12px')
   })
 
-  test("returns default when variable isn't found.", () => {
+  test("returns default when variable isn't found", () => {
     expect(cssVar('--unfound-variable', 'orange')).toEqual('orange')
   })
 

@@ -1,9 +1,7 @@
-// @flow
 import reduceHexValue from '../internalHelpers/_reduceHexValue'
 import toHex from '../internalHelpers/_numberToHex'
 import PolishedError from '../internalHelpers/_errors'
-
-import type { RgbColor } from '../types/color'
+import { RgbColor } from '../types/color'
 
 /**
  * Returns a string value for the color. The returned result is the smallest possible hex notation.

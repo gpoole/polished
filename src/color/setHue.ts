@@ -1,7 +1,7 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
+import { HslColor } from '../types/color'
 
 /**
  * Sets the hue of a color to the provided value. The hue range can be
@@ -28,12 +28,13 @@ import toColorString from './toColorString'
  */
 function setHue(hue: number | string, color: string): string {
   if (color === 'transparent') return color
+  const hslColor: HslColor = parseToHsl(color)
   return toColorString({
-    ...parseToHsl(color),
-    hue: parseFloat(hue),
+    ...hslColor,
+    hue: parseFloat(hue.toString()),
   })
 }
 
 // prettier-ignore
-const curriedSetHue = curry/* ::<number | string, string, string> */(setHue)
+const curriedSetHue = curry(setHue);
 export default curriedSetHue

@@ -1,4 +1,3 @@
-// @flow
 import curry from '../internalHelpers/_curry'
 import parseToHsl from './parseToHsl'
 import toColorString from './toColorString'
@@ -28,12 +27,13 @@ import toColorString from './toColorString'
  */
 function setLightness(lightness: number | string, color: string): string {
   if (color === 'transparent') return color
+  const hslColor = parseToHsl(color)
   return toColorString({
-    ...parseToHsl(color),
-    lightness: parseFloat(lightness),
+    ...hslColor,
+    lightness: parseFloat(lightness.toString()),
   })
 }
 
 // prettier-ignore
-const curriedSetLightness = curry/* ::<number | string, string, string> */(setLightness)
+const curriedSetLightness = curry(setLightness);
 export default curriedSetLightness

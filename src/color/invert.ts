@@ -1,9 +1,8 @@
-// @flow
 import parseToRgb from './parseToRgb'
 import toColorString from './toColorString'
 
 /**
- * Inverts the red, green and blue values of a color.
+ * Inverts the red, green, and blue values of a color.
  *
  * @example
  * // Styles as object usage
@@ -27,7 +26,6 @@ import toColorString from './toColorString'
  */
 export default function invert(color: string): string {
   if (color === 'transparent') return color
-  // parse color string to rgb
   const value = parseToRgb(color)
   return toColorString({
     ...value,
