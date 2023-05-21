@@ -1,37 +1,33 @@
 # config files
 .babelrc
 .babelrc.js
+.browserlistrc
 .documentation.json
 .editorconfig
 .eslintignore
 .eslintrc
-.flowconfig
 .github
 .gitignore
 .npmignore
-.travis.yml
-.browserlistrc
 .prettierignore
 .prettierrc
+.turbo
+.travis.yml
 .vscode
-babel.config.js
 CODEOWNERS
+babel.config.js
 
 # folders
 coverage
-docs-theme
 src
 test
-flow-typed
 
 # markdown files
-CONTRIBUTING.md
 CODE_OF_CONDUCT.md
+CONTRIBUTING.md
 
 # misc.
 CNAME
 rollup.config.js
 travis_after_all.py
-yarn.lock
-.yarn
 typescript-test.ts

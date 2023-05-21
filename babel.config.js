@@ -5,17 +5,19 @@ module.exports = {
   presets: [
     [
       "@babel/preset-env",
+      "@babel/preset-typescript",
       {
         loose: true,
         exclude: [/transform-typeof-symbol/],
         bugfixes: true,
+        useBuiltIns: "usage",
+        corejs: 3,
       },
-    ],
-    "@babel/flow",
+    ]
   ],
   plugins: [
     cjs && "add-module-exports",
+    "macros",
     "annotate-pure-calls",
-    "preval",
   ].filter(Boolean),
 };

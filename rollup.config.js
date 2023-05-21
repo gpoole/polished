@@ -1,8 +1,7 @@
 import babel from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
-import sourceMaps from "rollup-plugin-sourcemaps";
-import { terser } from "rollup-plugin-terser";
+import terser  from "@rollup/plugin-terser";
 
 const root = process.platform === "win32" ? path.resolve("/") : "/";
 const external = (id) => !id.startsWith(".") && !id.startsWith(root);
@@ -15,7 +14,7 @@ const globals = {
     "taggedTemplateLiteralLoose",
 };
 
-const input = "src/index.js";
+const input = "src/index.ts";
 const name = "polished";
 
 const getBabelOptions = ({ useESModules }, targets) => ({
@@ -24,26 +23,29 @@ const getBabelOptions = ({ useESModules }, targets) => ({
   presets: [
     [
       "@babel/preset-env",
+      "@babel/preset-typescript",
       {
         loose: true,
         modules: false,
         exclude: [/transform-typeof-symbol/],
         targets,
         bugfixes: true,
+        useBuiltIns: "usage",
+        corejs: 3,
       },
-    ],
-    "@babel/flow",
+    ]
   ],
   plugins: [
     "add-module-exports",
+    "macros",
     "annotate-pure-calls",
-    "preval",
     [
       "@babel/transform-runtime",
       { useESModules },
       ">0.5%, not dead, ie >= 11, not op_mini all",
     ],
   ],
+  sourceMaps: true,
 });
 
 export default [
@@ -52,7 +54,6 @@ export default [
     output: { file: `dist/${name}.esm.js`, format: "esm" },
     external,
     plugins: [
-      sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: true })),
     ],
@@ -62,7 +63,6 @@ export default [
     output: { file: `dist/${name}.cjs.js`, format: "cjs" },
     external,
     plugins: [
-      sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: false })),
     ],
@@ -72,10 +72,9 @@ export default [
     output: { file: `dist/${name}.js`, format: "umd", name, globals },
     external,
     plugins: [
-      sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: true })),
-      replace({ "process.env.NODE_ENV": JSON.stringify("development") }),
+      replace({ "process.env.NODE_ENV": JSON.stringify("development"), preventAssignment: true }),
     ],
   },
   {
@@ -83,10 +82,9 @@ export default [
     output: { file: `dist/${name}.min.js`, format: "umd", name, globals },
     external,
     plugins: [
-      sourceMaps(),
       resolve(),
       babel(getBabelOptions({ useESModules: true })),
-      replace({ "process.env.NODE_ENV": JSON.stringify("production") }),
+      replace({ "process.env.NODE_ENV": JSON.stringify("production"), preventAssignment: true }),
       terser(),
     ],
   },

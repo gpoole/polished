@@ -1,0 +1,8 @@
+
+> polished@5.0.0 build /Users/brianhough/Repos/polished
+> esbuild src/index.ts --bundle --format=esm --outfile=dist/polished.esm.js --minify --sourcemap --target=es2015
+
+✘ [ERROR] Could not resolve "src/index.ts"
+
+1 error
+ ELIFECYCLE  Command failed with exit code 1.

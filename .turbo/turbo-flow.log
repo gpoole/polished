@@ -1,0 +1,14 @@
+yarn run v1.22.19
+$ flow check && flow batch-coverage src/ --show-all --strip-root
+Error --------------------------------------------------------------------------- flow-typed/npm/ramda_v0.x.x.js:2134:43
+
+Unexpected token `:`, expected a type
+
+   2134|   ): (y: (...args: Array<any>) => any) => : (...args: Array<any>) => any;
+                                                   ^
+
+
+
+Found 1 error
+error Command failed with exit code 2.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
