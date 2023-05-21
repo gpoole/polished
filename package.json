@@ -23,7 +23,8 @@
     "color manipulation",
     "curried color manipulation",
     "color",
-    "colour"
+    "colour",
+    "tailwind"
   ],
   "main": "dist/polished.cjs.js",
   "module": "dist/polished.esm.js",
