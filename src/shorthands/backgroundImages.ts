@@ -1,4 +1,3 @@
-// @flow
 import type { Styles } from '../types/style'
 
 /**
@@ -20,7 +19,7 @@ import type { Styles } from '../types/style'
  *   'backgroundImage': 'url("/image/background.jpg"), linear-gradient(red, green)'
  * }
  */
-export default function backgroundImages(...properties: Array<string>): Styles {
+export default function backgroundImages(...properties: string[]): Styles {
   return {
     backgroundImage: properties.join(', '),
   }

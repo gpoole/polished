@@ -1,4 +1,3 @@
-// @flow
 import buttons from '../buttons'
 
 describe('buttons', () => {
@@ -12,6 +11,7 @@ describe('buttons', () => {
       },
     })
   })
+
   it('populates buttons selectors for a single state', () => {
     expect({
       [buttons('active')]: { 'border-color': 'black' },
@@ -24,6 +24,7 @@ describe('buttons', () => {
       },
     })
   })
+
   it('populates both base selectors and selectors for a single state', () => {
     expect({
       [buttons(null, 'focus')]: { 'border-color': 'black' },
@@ -39,6 +40,7 @@ describe('buttons', () => {
       },
     })
   })
+
   it('populates button selectors for multiple states', () => {
     expect({
       [buttons('active', 'focus')]: { 'border-color': 'black' },
@@ -54,9 +56,10 @@ describe('buttons', () => {
       },
     })
   })
+
   it('throws an error when passed a state it does not recognize', () => {
     expect(() => ({
-      // $FlowFixMe
+      // @ts-expect-error
       [buttons('clicked')]: { 'border-color': 'black' },
     })).toThrow('You passed an unsupported selector state to this method')
   })

@@ -1,4 +1,3 @@
-// @flow
 import borderStyle from '../borderStyle'
 
 describe('borderStyle', () => {
@@ -10,6 +9,7 @@ describe('borderStyle', () => {
       borderTopStyle: 'solid',
     })
   })
+
   it('properly applies values when passed two', () => {
     expect(borderStyle('solid', 'dashed')).toEqual({
       borderBottomStyle: 'solid',
@@ -18,6 +18,7 @@ describe('borderStyle', () => {
       borderTopStyle: 'solid',
     })
   })
+
   it('properly applies values when passed three', () => {
     expect(borderStyle('solid', 'dashed', 'dotted')).toEqual({
       borderBottomStyle: 'dotted',
@@ -26,9 +27,37 @@ describe('borderStyle', () => {
       borderTopStyle: 'solid',
     })
   })
+
   it('properly applies values when passed four', () => {
     expect(borderStyle('solid', 'dashed', 'dotted', 'double')).toEqual({
       borderBottomStyle: 'dotted',
+      borderLeftStyle: 'double',
+      borderRightStyle: 'dashed',
+      borderTopStyle: 'solid',
+    })
+  })
+
+  it('properly applies values when passed null', () => {
+    expect(borderStyle(null, 'dashed', null, 'double')).toEqual({
+      borderBottomStyle: 'dashed',
+      borderLeftStyle: 'double',
+      borderRightStyle: 'dashed',
+      borderTopStyle: 'solid',
+    })
+  })
+
+  it('properly applies values when passed undefined', () => {
+    expect(borderStyle(undefined, 'dashed', undefined, 'double')).toEqual({
+      borderBottomStyle: 'dashed',
+      borderLeftStyle: 'double',
+      borderRightStyle: 'dashed',
+      borderTopStyle: 'solid',
+    })
+  })
+
+  it('properly applies values when passed a mix of null, undefined, and valid values', () => {
+    expect(borderStyle(null, 'dashed', undefined, 'double')).toEqual({
+      borderBottomStyle: 'dashed',
       borderLeftStyle: 'double',
       borderRightStyle: 'dashed',
       borderTopStyle: 'solid',

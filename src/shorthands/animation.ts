@@ -1,7 +1,8 @@
-// @flow
 import PolishedError from '../internalHelpers/_errors'
 
 import type { Styles } from '../types/style'
+
+type AnimationArgs = Array<Array<string | number> | string | number>
 
 /**
  * Shorthand for easily setting the animation property. Allows either multiple arrays with animations
@@ -39,9 +40,7 @@ import type { Styles } from '../types/style'
  *   'animation': 'rotate 1s ease-in-out'
  * }
  */
-export default function animation(
-  ...args: Array<Array<string | number> | string | number>
-): Styles {
+export default function animation(...args: AnimationArgs): Styles {
   // Allow single or multiple animations passed
   const multiMode = Array.isArray(args[0])
   if (!multiMode && args.length > 8) {

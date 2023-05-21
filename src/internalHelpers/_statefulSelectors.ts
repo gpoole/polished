@@ -1,33 +1,28 @@
-// @flow
-import PolishedError from './_errors'
+import { InteractionState } from '../types/interactionState'
 
-import type { InteractionState } from '../types/interactionState'
+class PolishedError extends Error {
+  constructor(code: number) {
+    super(`PolishedError ${code}`)
+  }
+}
 
-function generateSelectors(template: Function, state: InteractionState): string {
+function generateSelectors(
+  template: (stateSuffix: string) => string,
+  state?: InteractionState,
+): string {
   const stateSuffix = state ? `:${state}` : ''
   return template(stateSuffix)
 }
 
-/**
- * Function helper that adds an array of states to a template of selectors. Used in textInputs and buttons.
- * @private
- */
 function statefulSelectors(
-  states: Array<InteractionState>,
-  template: Function,
-  stateMap?: Array<InteractionState>,
+  states: InteractionState[],
+  template: (stateSuffix: string) => string,
+  stateMap?: InteractionState[],
 ): string {
   if (!template) throw new PolishedError(67)
-  if (states.length === 0) return generateSelectors(template, null)
-  let selectors = []
-  for (let i = 0; i < states.length; i += 1) {
-    if (stateMap && stateMap.indexOf(states[i]) < 0) {
-      throw new PolishedError(68)
-    }
-    selectors.push(generateSelectors(template, states[i]))
-  }
-  selectors = selectors.join(',')
-  return selectors
+  const invalidStates = states.filter(state => !stateMap?.includes(state))
+  if (invalidStates.length) throw new PolishedError(68)
+  return states.map(state => generateSelectors(template, state)).join(',')
 }
 
 export default statefulSelectors

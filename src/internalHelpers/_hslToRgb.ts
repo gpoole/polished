@@ -8,18 +8,7 @@ function convertToInt(red: number, green: number, blue: number): string {
   return `${colorToInt(red)},${colorToInt(green)},${colorToInt(blue)}`
 }
 
-function hslToRgb(
-  hue: number,
-  saturation: number,
-  lightness: number,
-  convert: ConversionFunction = convertToInt,
-): string {
-  if (saturation === 0) {
-    // achromatic
-    const gray = colorToInt(lightness)
-    return convert(gray, gray, gray)
-  }
-
+function hslToRgb(hue: number, saturation: number, lightness: number): string {
   const chroma = (1 - Math.abs(2 * lightness - 1)) * saturation
   const huePrime = hue / 60
   const secondComponent = chroma * (1 - Math.abs((huePrime % 2) - 1))
@@ -53,7 +42,7 @@ function hslToRgb(
   green += lightnessModification
   blue += lightnessModification
 
-  return convert(red, green, blue)
+  return `${Math.round(red * 255)},${Math.round(green * 255)},${Math.round(blue * 255)}`
 }
 
 export default hslToRgb

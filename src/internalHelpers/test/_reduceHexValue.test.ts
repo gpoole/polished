@@ -20,4 +20,24 @@ describe('reduceHexValue', () => {
   it('should return the value in case it can not be reduced', () => {
     expect(reduceHexValue('You rock!')).toEqual('You rock!')
   })
+
+  it('should reduce #ffccdd to #fcd', () => {
+    expect(reduceHexValue('#ffccdd')).toEqual('#fcd')
+  })
+
+  it('should reduce #aabbcc to #abc', () => {
+    expect(reduceHexValue('#aabbcc')).toEqual('#abc')
+  })
+
+  it('should reduce #112233 to #123', () => {
+    expect(reduceHexValue('#112233')).toEqual('#123')
+  })
+
+  it('should reduce #000000 to #000', () => {
+    expect(reduceHexValue('#000000')).toEqual('#000')
+  })
+
+  it('should reduce #ffffff to #fff even with uppercase letters', () => {
+    expect(reduceHexValue('#FFFFFF')).toEqual('#fff')
+  })
 })

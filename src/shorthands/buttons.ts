@@ -1,15 +1,13 @@
-// @flow
 import statefulSelectors from '../internalHelpers/_statefulSelectors'
 
 import type { InteractionState } from '../types/interactionState'
 
-const stateMap = [undefined, null, 'active', 'focus', 'hover']
-
-function template(state: string): string {
-  return `button${state},
-  input[type="button"]${state},
-  input[type="reset"]${state},
-  input[type="submit"]${state}`
+function template(stateSuffix: string): string {
+  const state = stateSuffix as InteractionState
+  return `button${state ?? ''},
+  input[type="button"]${state ?? ''},
+  input[type="reset"]${state ?? ''},
+  input[type="submit"]${state ?? ''}`
 }
 
 /**
@@ -39,5 +37,5 @@ function template(state: string): string {
  * }
  */
 export default function buttons(...states: Array<InteractionState>): string {
-  return statefulSelectors(states, template, stateMap)
+  return statefulSelectors(states, template)
 }

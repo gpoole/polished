@@ -1,4 +1,3 @@
-// @flow
 import directionalProperty from '../helpers/directionalProperty'
 
 import type { Styles } from '../types/style'
@@ -25,6 +24,9 @@ import type { Styles } from '../types/style'
  *   'borderLeftColor': 'yellow'
  * }
  */
-export default function borderColor(...values: Array<?string>): Styles {
-  return directionalProperty('borderColor', ...values)
+export default function borderColor(...values: Array<string | null | undefined>): Styles {
+  return directionalProperty(
+    'borderColor',
+    ...values.filter((value): value is string => value !== null && value !== undefined),
+  )
 }

@@ -1,4 +1,3 @@
-// @flow
 import directionalProperty from '../helpers/directionalProperty'
 
 import type { Styles } from '../types/style'
@@ -25,6 +24,9 @@ import type { Styles } from '../types/style'
  *   'marginLeft': '48px'
  * }
  */
-export default function margin(...values: Array<?string | ?number>): Styles {
-  return directionalProperty('margin', ...values)
+export default function margin(...values: Array<string | number | null | undefined>): Styles {
+  return directionalProperty(
+    'margin',
+    ...values.filter((value): value is string => value !== null && value !== undefined),
+  )
 }

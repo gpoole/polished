@@ -1,4 +1,3 @@
-// @flow
 import borderWidth from '../borderWidth'
 
 describe('borderWidth', () => {
@@ -10,6 +9,7 @@ describe('borderWidth', () => {
       borderTopWidth: '12px',
     })
   })
+
   it('properly applies values when passed two', () => {
     expect(borderWidth('12px', '24px')).toEqual({
       borderBottomWidth: '12px',
@@ -18,6 +18,7 @@ describe('borderWidth', () => {
       borderTopWidth: '12px',
     })
   })
+
   it('properly applies values when passed three', () => {
     expect(borderWidth('12px', '24px', '36px')).toEqual({
       borderBottomWidth: '36px',
@@ -26,6 +27,7 @@ describe('borderWidth', () => {
       borderTopWidth: '12px',
     })
   })
+
   it('properly applies values when passed four', () => {
     expect(borderWidth('12px', '24px', '36px', '48px')).toEqual({
       borderBottomWidth: '36px',
@@ -34,6 +36,7 @@ describe('borderWidth', () => {
       borderTopWidth: '12px',
     })
   })
+
   it('properly applies values when passed integers', () => {
     expect(borderWidth(12, 24, 36, 48)).toEqual({
       borderBottomWidth: 36,
@@ -42,12 +45,40 @@ describe('borderWidth', () => {
       borderTopWidth: 12,
     })
   })
+
   it('properly applies values when passed zero', () => {
     expect(borderWidth(0)).toEqual({
       borderBottomWidth: 0,
       borderLeftWidth: 0,
       borderRightWidth: 0,
       borderTopWidth: 0,
+    })
+  })
+
+  it('properly applies values when passed null', () => {
+    expect(borderWidth(null, '24px', null, '48px')).toEqual({
+      borderBottomWidth: '24px',
+      borderLeftWidth: '48px',
+      borderRightWidth: '24px',
+      borderTopWidth: '0px',
+    })
+  })
+
+  it('properly applies values when passed undefined', () => {
+    expect(borderWidth(undefined, '24px', undefined, '48px')).toEqual({
+      borderBottomWidth: '24px',
+      borderLeftWidth: '48px',
+      borderRightWidth: '24px',
+      borderTopWidth: '0px',
+    })
+  })
+
+  it('properly applies values when passed a mix of null, undefined, and valid values', () => {
+    expect(borderWidth(null, '24px', undefined, '48px')).toEqual({
+      borderBottomWidth: '24px',
+      borderLeftWidth: '48px',
+      borderRightWidth: '24px',
+      borderTopWidth: '0px',
     })
   })
 })

@@ -1,121 +1,106 @@
 import PolishedError from '../_errors'
 
-const errors = {
-  1: 'Error 1: %s',
-  2: 'Error 2: %s %s',
-  3: 'Error 3: %s %s %s',
-}
-
 describe('PolishedError', () => {
-  it('should create an error with the correct message', () => {
-    const error = new PolishedError(1, 'foo')
-    expect(error.message).toBe('Error 1: foo')
+  it('should throw an error with the correct message for code 1', () => {
+    expect(() => {
+      throw new PolishedError(1)
+    }).toThrowError('Property must be a string value.')
   })
 
-  it('should replace all placeholders in the error message', () => {
-    const error = new PolishedError(2, 'foo', 'bar')
-    expect(error.message).toBe('Error 2: foo bar')
+  it('should throw an error with the correct message for code 2', () => {
+    expect(() => {
+      throw new PolishedError(2)
+    }).toThrowError('Property must be a string value. Property must be a string value.')
   })
 
-  it('should work with multiple placeholders of the same type', () => {
-    const error = new PolishedError(3, 'foo', 'bar', 'baz')
-    expect(error.message).toBe('Error 3: foo bar baz')
-  })
-
-  it('should provide a link to the errors file in production mode', () => {
-    process.env.NODE_ENV = 'production'
-    const error = new PolishedError(1, 'foo')
-    expect(error.message).toBe(
-      'An error occurred. See https://github.com/styled-components/polished/blob/main/src/internalHelpers/errors.json#1 for more information.',
+  it('should throw an error with the correct message for code 3', () => {
+    expect(() => {
+      throw new PolishedError(3)
+    }).toThrowError(
+      'Property must be a string value. Property must be a string value. Property must be a string value.',
     )
   })
 
-  it('should throw an error with the correct message', () => {
+  it('should throw an error with the correct message for code 64', () => {
     expect(() => {
-      throw new PolishedError(1, 'foo')
-    }).toThrow('Error 1: foo')
+      throw new PolishedError(64)
+    }).toThrowError(
+      'The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation',
+    )
   })
 
-  it('should work with no arguments', () => {
-    const error = new PolishedError(1)
-    expect(error.message).toBe('Error 1: undefined')
+  it('should throw an error with the correct message for code 65', () => {
+    expect(() => {
+      throw new PolishedError(65)
+    }).toThrowError('Property must be a string value.')
   })
 
-  it('should throw an error with no arguments', () => {
+  it('should throw an error with the correct message for code 66', () => {
     expect(() => {
-      throw new PolishedError(1)
-    }).toThrow('Error 1: undefined')
+      throw new PolishedError(66)
+    }).toThrowError(
+      'borderRadius expects a radius value as a string or number as the second argument.',
+    )
   })
 
-  it('should throw an error with extra arguments', () => {
+  it('should throw an error with the correct message for code 67', () => {
     expect(() => {
-      throw new PolishedError(1, 'foo', 'bar')
-    }).toThrow('Error 1: foo')
+      throw new PolishedError(67)
+    }).toThrowError(
+      'borderRadius expects one of "top", "bottom", "left" or "right" as the first argument.',
+    )
   })
 
-  it('should throw an error with an invalid code', () => {
+  it('should throw an error with the correct message for code 68', () => {
     expect(() => {
-      throw new PolishedError(4, 'foo')
-    }).toThrow('Error 4: undefined')
+      throw new PolishedError(68)
+    }).toThrowError('Property must be a string value.')
   })
 
-  it('should throw an error with an invalid message', () => {
+  it('should throw an error with the correct message for code 69', () => {
     expect(() => {
-      throw new PolishedError(1, 'foo', 'bar')
-    }).toThrow('Error 1: foo bar')
+      throw new PolishedError(69)
+    }).toThrowError('Value must be a string or number.')
   })
 
-  it('should throw an error with an invalid message and extra arguments', () => {
+  it('should throw an error with the correct message for code 70', () => {
     expect(() => {
-      throw new PolishedError(1, 'foo', 'bar', 'baz')
-    }).toThrow('Error 1: foo bar')
+      throw new PolishedError(70, 'test')
+    }).toThrowError('Syntax Error at test.')
   })
 
-  it('should throw an error with an invalid message and no arguments', () => {
+  it('should throw an error with the correct message for code 71', () => {
     expect(() => {
-      throw new PolishedError(1)
-    }).toThrow('Error 1: undefined')
+      throw new PolishedError(71, 'test')
+    }).toThrowError('Formula contains a function that needs parentheses at test.')
   })
 
-  it('should throw an error with an invalid message and an invalid code', () => {
+  it('should throw an error with the correct message for code 72', () => {
     expect(() => {
-      throw new PolishedError(4)
-    }).toThrow('Error 4: undefined')
+      throw new PolishedError(72, 'test')
+    }).toThrowError('Formula is missing closing parenthesis at test.')
   })
 
-  it('should throw an error with an invalid message and an invalid code and extra arguments', () => {
+  it('should throw an error with the correct message for code 73', () => {
     expect(() => {
-      throw new PolishedError(4, 'foo', 'bar', 'baz')
-    }).toThrow('Error 4: undefined')
+      throw new PolishedError(73, 'test')
+    }).toThrowError('Formula has too many closing parentheses at test.')
   })
 
-  it('should throw an error with an invalid message and an invalid code and no arguments', () => {
+  it('should throw an error with the correct message for code 74', () => {
     expect(() => {
-      throw new PolishedError(4)
-    }).toThrow('Error 4: undefined')
+      throw new PolishedError(74)
+    }).toThrowError('All values in a formula must have the same unit or be unitless.')
   })
 
-  it('should throw an error with an invalid message and an invalid code and extra arguments', () => {
-    expect(() => {
-      throw new PolishedError(4, 'foo', 'bar', 'baz')
-    }).toThrow('Error 4: undefined')
-  })
+  it('should not throw an error in production mode', () => {
+    const env = process.env.NODE_ENV
+    process.env.NODE_ENV = 'production'
 
-  it('should throw an error with an invalid message and an invalid code and no arguments', () => {
     expect(() => {
-      throw new PolishedError(4)
-    }).toThrow('Error 4: undefined')
-  })
+      throw new PolishedError(64)
+    }).not.toThrow()
 
-  it('should throw an error with an invalid message and an invalid code and extra arguments', () => {
-    expect(() => {
-      throw new PolishedError(4, 'foo', 'bar', 'baz')
-    }).toThrow('Error 4: undefined')
-  })
-
-  it('should throw an error with an invalid message and an invalid code and no arguments', () => {
-    expect(() => {
-      throw new PolishedError(4)
-    }).toThrow('Error 4: undefined')
+    process.env.NODE_ENV = env
   })
 })

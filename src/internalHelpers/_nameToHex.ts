@@ -1,3 +1,5 @@
+import PolishedError from './_errors'
+
 const namedColorMap: { [key: string]: string } = {
   aliceblue: 'f0f8ff',
   antiquewhite: 'faebd7',
@@ -149,13 +151,21 @@ const namedColorMap: { [key: string]: string } = {
   yellowgreen: '9acd32',
 }
 
-/**
- * Checks if a string is a CSS named color and returns its equivalent hex value, otherwise returns the original color.
- * @private
- */
-function nameToHex(color: string): string {
-  const normalizedColorName = color.toLowerCase()
-  return `#${namedColorMap[normalizedColorName]?.toLowerCase() ?? normalizedColorName}`
-}
+const memoizedNameToHex = (() => {
+  const memo = new Map<string, string>()
+  return (color: string): string => {
+    const normalizedColorName = color.toLowerCase()
+    if (memo.has(normalizedColorName)) {
+      return memo.get(normalizedColorName)!
+      const hexColor = `#${
+        namedColorMap[normalizedColorName]?.toLowerCase() ?? normalizedColorName
+      }`
+      memo.set(normalizedColorName, hexColor)
+      return hexColor
+    } else {
+      return color
+    }
+  }
+})()
 
-export default nameToHex
+export default memoizedNameToHex

@@ -1,4 +1,3 @@
-// @flow
 import margin from '../margin'
 
 describe('margin', () => {
@@ -10,6 +9,7 @@ describe('margin', () => {
       marginTop: '12px',
     })
   })
+
   it('properly applies values when passed two', () => {
     expect(margin('12px', '24px')).toEqual({
       marginBottom: '12px',
@@ -18,6 +18,7 @@ describe('margin', () => {
       marginTop: '12px',
     })
   })
+
   it('properly applies values when passed three', () => {
     expect(margin('12px', '24px', '36px')).toEqual({
       marginBottom: '36px',
@@ -26,6 +27,7 @@ describe('margin', () => {
       marginTop: '12px',
     })
   })
+
   it('properly applies values when passed four', () => {
     expect(margin('12px', '24px', '36px', '48px')).toEqual({
       marginBottom: '36px',
@@ -34,7 +36,8 @@ describe('margin', () => {
       marginTop: '12px',
     })
   })
-  it('properly applies values when passed four', () => {
+
+  it('properly applies values when passed four as numbers', () => {
     expect(margin(12, 24, 36, 48)).toEqual({
       marginBottom: 36,
       marginLeft: 48,
@@ -42,12 +45,22 @@ describe('margin', () => {
       marginTop: 12,
     })
   })
-  it('properly applies zero value', () => {
-    expect(margin(0)).toEqual({
-      marginBottom: 0,
-      marginLeft: 0,
-      marginRight: 0,
-      marginTop: 0,
+
+  it('properly applies values when passed null', () => {
+    expect(margin(null, '24px', null, '48px')).toEqual({
+      marginBottom: null,
+      marginLeft: '48px',
+      marginRight: '24px',
+      marginTop: null,
+    })
+  })
+
+  it('properly applies values when passed undefined', () => {
+    expect(margin(undefined, '24px', undefined, '48px')).toEqual({
+      marginBottom: undefined,
+      marginLeft: '48px',
+      marginRight: '24px',
+      marginTop: undefined,
     })
   })
 })

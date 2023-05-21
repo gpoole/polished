@@ -1,4 +1,3 @@
-// @flow
 import directionalProperty from '../helpers/directionalProperty'
 
 import type { Styles } from '../types/style'
@@ -25,6 +24,9 @@ import type { Styles } from '../types/style'
  *   'borderLeftWidth': '48px'
  * }
  */
-export default function borderWidth(...values: Array<?string | ?number>): Styles {
-  return directionalProperty('borderWidth', ...values)
+export default function borderWidth(...values: Array<string | number | null | undefined>): Styles {
+  return directionalProperty(
+    'borderWidth',
+    ...values.filter((value): value is string | number => value !== null && value !== undefined),
+  )
 }
