@@ -2,45 +2,45 @@
 > polished@5.0.0 build /Users/brianhough/Repos/polished
 > esbuild src/index.ts --bundle --format=esm --outfile=dist/polished.esm.js --minify --sourcemap --target=es2015
 
+✘ [ERROR] Expected ")" but found ":"
+
+    src/helpers/getValueAndUnit.js:27:45:
+      27 │ ...rt default function getValueAndUnit(value: string | number): any {
+         │                                             ^
+         ╵                                             )
+
 ✘ [ERROR] Expected "from" but found "{"
 
-    src/easings/easeInOut.js:2:12:
-      2 │ import type { TimingFunction } from '../types/timingFunction'
+    src/mixins/ellipsis.js:2:12:
+      2 │ import type { Styles } from '../types/style'
         │             ^
         ╵             from
 
-✘ [ERROR] Expected ")" but found "?"
+✘ [ERROR] Expected "from" but found "{"
 
-    src/math/math.js:8:42:
-      8 │ function mergeSymbolMaps(additionalSymbols?: Object): Object {
-        │                                           ^
-        ╵                                           )
+    src/helpers/important.js:2:12:
+      2 │ import type { Styles } from '../types/style'
+        │             ^
+        ╵             from
+
+✘ [ERROR] Expected "from" but found "{"
+
+    src/helpers/directionalProperty.js:4:12:
+      4 │ import type { Styles } from '../types/style'
+        │             ^
+        ╵             from
+
+✘ [ERROR] Expected "from" but found "{"
+
+    src/helpers/modularScale.js:5:12:
+      5 │ import type { ModularScaleRatio } from '../types/modularScaleRatio'
+        │             ^
+        ╵             from
 
 ✘ [ERROR] Expected "from" but found "{"
 
     src/mixins/fontFace.js:4:12:
       4 │ import type { FontFaceConfiguration } from '../types/fontFaceConfig...
-        │             ^
-        ╵             from
-
-✘ [ERROR] Expected "from" but found "{"
-
-    src/easings/easeOut.js:2:12:
-      2 │ import type { TimingFunction } from '../types/timingFunction'
-        │             ^
-        ╵             from
-
-✘ [ERROR] Expected ")" but found ":"
-
-    src/color/readableColor.js:44:7:
-      44 │   color: string,
-         │        ^
-         ╵        )
-
-✘ [ERROR] Expected "from" but found "{"
-
-    src/color/rgb.js:6:12:
-      6 │ import type { RgbColor } from '../types/color'
         │             ^
         ╵             from
 
